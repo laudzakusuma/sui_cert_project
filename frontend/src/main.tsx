@@ -1,20 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "@mysten/dapp-kit/dist/index.css";
 
-import { DAppKitProvider } from "@mysten/dapp-kit-react";
+import { SuiClientProvider, WalletProvider, createNetworkConfig } from "@mysten/dapp-kit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import App from "./App.tsx";
-import { dAppKit } from "./dApp-kit.ts";
+import App from "./App";
+
+const { networkConfig } = createNetworkConfig({
+  testnet: { url: "https://fullnode.testnet.sui.io:443", network: "testnet" },
+  mainnet: { url: "https://fullnode.mainnet.sui.io:443", network: "mainnet" },
+});
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <DAppKitProvider dAppKit={dAppKit}>
+  <QueryClientProvider client={queryClient}>
+    <SuiClientProvider networks={networkConfig} defaultNetwork="testnet">
+      <WalletProvider>
         <App />
-      </DAppKitProvider>
-    </QueryClientProvider>
-  </React.StrictMode>,
+      </WalletProvider>
+    </SuiClientProvider>
+  </QueryClientProvider>
+</React.StrictMode>
 );

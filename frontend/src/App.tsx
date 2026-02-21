@@ -1,4 +1,4 @@
-import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit-react";
+import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
 import { MintCertificate } from "./MintCertificate";
 
 function App() {
