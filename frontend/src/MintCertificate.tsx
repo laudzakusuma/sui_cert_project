@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useSignAndExecuteTransaction } from '@mysten/dapp-kit';
 import { Transaction } from '@mysten/sui/transactions';
-
-// ⚠️ GANTI DENGAN PACKAGE ID KAMU (yang 0x...)
 const PACKAGE_ID = "0x978acd41adef232f44ac4f86f1f260a208c71b14aade0edebd5bb75fb20a7eec"; 
 
 const WALRUS_PUBLISHER_URL = "https://publisher.walrus-testnet.walrus.space";
